@@ -1,19 +1,15 @@
 package org.hopto.delow.client;
 
 import com.fasterxml.jackson.databind.ObjectReader;
-import org.hopto.delow.common.DefaultRestResponseWithId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import spark.Request;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -42,7 +38,7 @@ public class TestClientController {
 //        ClientCreateRequest request = new ClientCreateRequest();
 
 
-//        DefaultRestResponseWithId defaultRestResponse = controller.handlePost(request);
+//        RestResponseBodyWithId defaultRestResponse = controller.handleCreate(request);
 //        assertEquals(defaultRestResponse.getResponseCode(), 0);
 //        assertEquals(defaultRestResponse.getId(), createdClientId);
     }

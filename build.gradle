@@ -41,6 +41,8 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.7'
 
+    compile 'org.apache.commons:commons-lang3:3.8.1'
+
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.23.0'

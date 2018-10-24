@@ -3,23 +3,22 @@ package org.hopto.delow.common;
 public class RestResponse {
 
     private int status;
-    private Object responseBody;
+    private DefaultRestResponseBody responseBody;
 
-
-    public RestResponse(int status, Object responseBody) {
+    public RestResponse(int status, DefaultRestResponseBody responseBody) {
         this.status = status;
         this.responseBody = responseBody;
-    }
-
-    public RestResponse(int status) {
-        this(status, "");
     }
 
     public int getStatus() {
         return status;
     }
 
-    public Object getResponseBody() {
+    public DefaultRestResponseBody getResponseBody() {
         return responseBody;
+    }
+
+    public static RestResponse ok() {
+        return new RestResponse(200, new DefaultRestResponseBody());
     }
 }

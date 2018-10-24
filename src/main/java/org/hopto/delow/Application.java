@@ -23,7 +23,7 @@ public class Application {
 
         ObjectWriter writer = injector.getInstance(ObjectWriter.class);
 
-        RequestHandlerAdapter<ClientCreateRequest> clientCreateAdapter = new RequestHandlerAdapter<>(clientController::handlePost, mapper.readerFor(ClientCreateRequest.class));
+        RequestHandlerAdapter<ClientCreateRequest> clientCreateAdapter = new RequestHandlerAdapter<>(clientController::handleCreate, mapper.readerFor(ClientCreateRequest.class));
 
         post("/client", clientCreateAdapter, writer::writeValueAsString);
 

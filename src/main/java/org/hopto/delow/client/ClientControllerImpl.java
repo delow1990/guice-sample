@@ -1,12 +1,13 @@
 package org.hopto.delow.client;
 
-import org.hopto.delow.common.DefaultRestResponseWithId;
+import org.apache.commons.lang3.NotImplementedException;
 import org.hopto.delow.common.RestResponse;
+import org.hopto.delow.common.RestResponseBodyWithId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import java.util.Set;
+import java.util.Map;
 
 public class ClientControllerImpl implements ClientController {
 
@@ -18,12 +19,17 @@ public class ClientControllerImpl implements ClientController {
         this.clientService = clientService;
     }
 
-    public RestResponse handlePost(ClientCreateRequest request, Set<String> strings) {
+    public RestResponse handleCreate(ClientCreateRequest request, Map<String, String[]> queryMap, Map<String, String> pathParams) {
         logger.info("Got request for user creation: {} {}", request.getFirstName(), request.getLastName());
 
         int client = clientService.createClient(request);
-        DefaultRestResponseWithId response = new DefaultRestResponseWithId(client);
+        RestResponseBodyWithId response = new RestResponseBodyWithId(client);
         return new RestResponse(200, response);
+    }
+
+    @Override
+    public RestResponse handleUpdate(ClientCreateRequest request, Map<String, String[]> queryParams, Map<String, String> pathParams) {
+        throw new NotImplementedException("");
     }
 
 }

@@ -3,7 +3,7 @@ package org.hopto.delow.common;
 import lombok.Data;
 
 @Data
-public class DefaultRestResponse {
+public class DefaultRestResponseBody {
 
     private static final String DEFAULT_RESPONSE_MESSAGE = "";
 

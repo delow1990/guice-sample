@@ -1,6 +1,7 @@
 package org.hopto.delow.infrastructure;
 
 import com.fasterxml.jackson.databind.ObjectReader;
+import org.hopto.delow.common.DefaultRestResponseBody;
 import org.hopto.delow.common.RestResponse;
 import spark.Request;
 import spark.Response;
@@ -18,11 +19,11 @@ public class RequestHandlerAdapter<T> implements Route {
     }
 
     @Override
-    public Object handle(Request request, Response response) throws Exception {
+    public DefaultRestResponseBody handle(Request request, Response response) throws Exception {
 
         T o = objectReader.readValue(request.bodyAsBytes());
 
-        RestResponse r = function.apply(o, request.queryParams());
+        RestResponse r = function.apply(o, request.queryMap().toMap(), request.params());
 
         response.status(r.getStatus());
         response.type("application/json; charset=utf-8");

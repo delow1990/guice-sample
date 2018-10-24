@@ -7,11 +7,11 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class DefaultRestResponseWithId extends DefaultRestResponse {
+public class RestResponseBodyWithId extends DefaultRestResponseBody {
 
     private long id;
 
-    public DefaultRestResponseWithId(long id) {
+    public RestResponseBodyWithId(long id) {
         this.id = id;
     }
 }

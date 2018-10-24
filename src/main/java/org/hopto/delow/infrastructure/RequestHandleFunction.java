@@ -1,10 +1,9 @@
 package org.hopto.delow.infrastructure;
 
-import java.util.Set;
-import java.util.function.BiFunction;
+import java.util.Map;
 
-public interface RequestHandleFunction<T, U> extends BiFunction<T, Set<String>, U> {
+@FunctionalInterface
+public interface RequestHandleFunction<T, U>{
 
-    @Override
-    U apply(T requestBody, Set<String> queryParams);
+    U apply(T requestBody, Map<String, String[]> queryParams, Map<String, String> pathParams);
 }
