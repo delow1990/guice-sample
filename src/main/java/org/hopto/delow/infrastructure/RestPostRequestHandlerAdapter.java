@@ -7,14 +7,23 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class RequestHandlerAdapter<T> implements Route {
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
-    private final RequestHandleFunction<T, RestResponse> function;
+public class RestPostRequestHandlerAdapter<T> implements Route {
+
+    private final BiFunction<T, Map<String, String>, RestResponse> function;
 
     private final ObjectReader objectReader;
 
-    public RequestHandlerAdapter(RequestHandleFunction<T, RestResponse> function, ObjectReader objectReader) {
+    public RestPostRequestHandlerAdapter(BiFunction<T, Map<String, String>, RestResponse> function, ObjectReader objectReader) {
         this.function = function;
+        this.objectReader = objectReader;
+    }
+
+    public RestPostRequestHandlerAdapter(Function<T, RestResponse> function, ObjectReader objectReader) {
+        this.function = (t, stringStringMap) -> function.apply(t);
         this.objectReader = objectReader;
     }
 
@@ -23,7 +32,7 @@ public class RequestHandlerAdapter<T> implements Route {
 
         T o = objectReader.readValue(request.bodyAsBytes());
 
-        RestResponse r = function.apply(o, request.queryMap().toMap(), request.params());
+        RestResponse r = function.apply(o, request.params());
 
         response.status(r.getStatus());
         response.type("application/json; charset=utf-8");

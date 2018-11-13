@@ -8,7 +8,7 @@ import org.hopto.delow.client.ClientController;
 import org.hopto.delow.client.ClientCreateRequest;
 import org.hopto.delow.configuration.ClientModule;
 import org.hopto.delow.configuration.InfrastructureModule;
-import org.hopto.delow.infrastructure.RequestHandlerAdapter;
+import org.hopto.delow.infrastructure.RestPostRequestHandlerAdapter;
 
 import static spark.Spark.post;
 
@@ -23,9 +23,9 @@ public class Application {
 
         ObjectWriter writer = injector.getInstance(ObjectWriter.class);
 
-        RequestHandlerAdapter<ClientCreateRequest> clientCreateAdapter = new RequestHandlerAdapter<>(clientController::handleCreate, mapper.readerFor(ClientCreateRequest.class));
-
-        post("/client", clientCreateAdapter, writer::writeValueAsString);
+//        RestPostRequestHandlerAdapter<ClientCreateRequest> clientCreateAdapter = new RestPostRequestHandlerAdapter<>(clientController::handleCreate, mapper.readerFor(ClientCreateRequest.class));
+//
+//        post("/client", clientCreateAdapter, writer::writeValueAsString);
 
     }
 
